@@ -1,0 +1,24 @@
+[2025-10-27T09:00:13.600+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-10-27T09:00:13.650+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dataco_supply_chain_pipeline.dbt_deps_mart manual__2025-10-27T08:57:01.081751+00:00 [queued]>
+[2025-10-27T09:00:13.667+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dataco_supply_chain_pipeline.dbt_deps_mart manual__2025-10-27T08:57:01.081751+00:00 [queued]>
+[2025-10-27T09:00:13.668+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-10-27T09:00:13.690+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_deps_mart> on 2025-10-27 08:57:01.081751+00:00
+[2025-10-27T09:00:13.698+0000] {standard_task_runner.py:64} INFO - Started process 582 to run task
+[2025-10-27T09:00:13.703+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dataco_supply_chain_pipeline', 'dbt_deps_mart', 'manual__2025-10-27T08:57:01.081751+00:00', '--job-id', '48', '--raw', '--subdir', 'DAGS_FOLDER/DataCo_pipeline_DAG.py', '--cfg-path', '/tmp/tmp1_arekpk']
+[2025-10-27T09:00:13.706+0000] {standard_task_runner.py:91} INFO - Job 48: Subtask dbt_deps_mart
+[2025-10-27T09:00:13.773+0000] {task_command.py:426} INFO - Running <TaskInstance: dataco_supply_chain_pipeline.dbt_deps_mart manual__2025-10-27T08:57:01.081751+00:00 [running]> on host 787267c1a4b2
+[2025-10-27T09:00:13.883+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='bi@example.com' AIRFLOW_CTX_DAG_OWNER='DE-team' AIRFLOW_CTX_DAG_ID='dataco_supply_chain_pipeline' AIRFLOW_CTX_TASK_ID='dbt_deps_mart' AIRFLOW_CTX_EXECUTION_DATE='2025-10-27T08:57:01.081751+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-10-27T08:57:01.081751+00:00'
+[2025-10-27T09:00:13.885+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-10-27T09:00:13.900+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-10-27T09:00:13.902+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /usr/app/supply_chain_mart && dbt deps']
+[2025-10-27T09:00:13.918+0000] {subprocess.py:86} INFO - Output:
+[2025-10-27T09:00:18.401+0000] {subprocess.py:93} INFO - [0m09:00:18  Running with dbt=1.9.1
+[2025-10-27T09:00:19.484+0000] {subprocess.py:93} INFO - [0m09:00:19  Installing dbt-labs/dbt_utils
+[2025-10-27T09:00:27.024+0000] {subprocess.py:93} INFO - [0m09:00:27  Installed from version 1.3.1
+[2025-10-27T09:00:27.026+0000] {subprocess.py:93} INFO - [0m09:00:27  Up to date!
+[2025-10-27T09:00:29.861+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-10-27T09:00:29.863+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-10-27T09:00:29.903+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=dataco_supply_chain_pipeline, task_id=dbt_deps_mart, run_id=manual__2025-10-27T08:57:01.081751+00:00, execution_date=20251027T085701, start_date=20251027T090013, end_date=20251027T090029
+[2025-10-27T09:00:29.969+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2025-10-27T09:00:30.004+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-10-27T09:00:30.006+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

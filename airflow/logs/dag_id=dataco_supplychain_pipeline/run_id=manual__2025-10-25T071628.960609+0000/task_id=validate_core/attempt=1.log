@@ -1,0 +1,102 @@
+[2025-10-25T07:16:55.268+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-10-25T07:16:55.309+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dataco_supplychain_pipeline.validate_core manual__2025-10-25T07:16:28.960609+00:00 [queued]>
+[2025-10-25T07:16:55.323+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dataco_supplychain_pipeline.validate_core manual__2025-10-25T07:16:28.960609+00:00 [queued]>
+[2025-10-25T07:16:55.324+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-10-25T07:16:55.341+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): validate_core> on 2025-10-25 07:16:28.960609+00:00
+[2025-10-25T07:16:55.347+0000] {standard_task_runner.py:64} INFO - Started process 154 to run task
+[2025-10-25T07:16:55.350+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dataco_supplychain_pipeline', 'validate_core', 'manual__2025-10-25T07:16:28.960609+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/pipeline_1.py', '--cfg-path', '/tmp/tmp7oomvl35']
+[2025-10-25T07:16:55.352+0000] {standard_task_runner.py:91} INFO - Job 4: Subtask validate_core
+[2025-10-25T07:16:55.433+0000] {task_command.py:426} INFO - Running <TaskInstance: dataco_supplychain_pipeline.validate_core manual__2025-10-25T07:16:28.960609+00:00 [running]> on host f562512c7776
+[2025-10-25T07:16:55.581+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='bi@example.com' AIRFLOW_CTX_DAG_OWNER='DE-team' AIRFLOW_CTX_DAG_ID='dataco_supplychain_pipeline' AIRFLOW_CTX_TASK_ID='validate_core' AIRFLOW_CTX_EXECUTION_DATE='2025-10-25T07:16:28.960609+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-10-25T07:16:28.960609+00:00'
+[2025-10-25T07:16:55.584+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-10-25T07:16:55.625+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-10-25T07:16:55.632+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /usr/app/supply_chain_core && dbt test --select core']
+[2025-10-25T07:16:55.660+0000] {subprocess.py:86} INFO - Output:
+[2025-10-25T07:17:00.669+0000] {subprocess.py:93} INFO - [0m07:17:00  Running with dbt=1.9.1
+[2025-10-25T07:17:01.135+0000] {subprocess.py:93} INFO - [0m07:17:01  Registered adapter: postgres=1.9.1
+[2025-10-25T07:17:04.508+0000] {subprocess.py:93} INFO - [0m07:17:04  Found 10 models, 35 data tests, 1 source, 548 macros
+[2025-10-25T07:17:04.523+0000] {subprocess.py:93} INFO - [0m07:17:04
+[2025-10-25T07:17:04.527+0000] {subprocess.py:93} INFO - [0m07:17:04  Concurrency: 1 threads (target='dev')
+[2025-10-25T07:17:04.531+0000] {subprocess.py:93} INFO - [0m07:17:04
+[2025-10-25T07:17:04.786+0000] {subprocess.py:93} INFO - [0m07:17:04  1 of 35 START test not_null_categories_category_id ............................. [RUN]
+[2025-10-25T07:17:04.966+0000] {subprocess.py:93} INFO - [0m07:17:04  1 of 35 PASS not_null_categories_category_id ................................... [[32mPASS[0m in 0.18s]
+[2025-10-25T07:17:04.977+0000] {subprocess.py:93} INFO - [0m07:17:04  2 of 35 START test not_null_categories_department_id ........................... [RUN]
+[2025-10-25T07:17:05.097+0000] {subprocess.py:93} INFO - [0m07:17:05  2 of 35 PASS not_null_categories_department_id ................................. [[32mPASS[0m in 0.12s]
+[2025-10-25T07:17:05.109+0000] {subprocess.py:93} INFO - [0m07:17:05  3 of 35 START test not_null_customers_customer_id .............................. [RUN]
+[2025-10-25T07:17:05.238+0000] {subprocess.py:93} INFO - [0m07:17:05  3 of 35 PASS not_null_customers_customer_id .................................... [[32mPASS[0m in 0.13s]
+[2025-10-25T07:17:05.249+0000] {subprocess.py:93} INFO - [0m07:17:05  4 of 35 START test not_null_delivery_status_delivery_status_id ................. [RUN]
+[2025-10-25T07:17:05.359+0000] {subprocess.py:93} INFO - [0m07:17:05  4 of 35 PASS not_null_delivery_status_delivery_status_id ....................... [[32mPASS[0m in 0.11s]
+[2025-10-25T07:17:05.369+0000] {subprocess.py:93} INFO - [0m07:17:05  5 of 35 START test not_null_departments_department_id .......................... [RUN]
+[2025-10-25T07:17:05.513+0000] {subprocess.py:93} INFO - [0m07:17:05  5 of 35 PASS not_null_departments_department_id ................................ [[32mPASS[0m in 0.14s]
+[2025-10-25T07:17:05.525+0000] {subprocess.py:93} INFO - [0m07:17:05  6 of 35 START test not_null_location_location_id ............................... [RUN]
+[2025-10-25T07:17:05.654+0000] {subprocess.py:93} INFO - [0m07:17:05  6 of 35 PASS not_null_location_location_id ..................................... [[32mPASS[0m in 0.12s]
+[2025-10-25T07:17:05.670+0000] {subprocess.py:93} INFO - [0m07:17:05  7 of 35 START test not_null_order_items_order_id ............................... [RUN]
+[2025-10-25T07:17:05.853+0000] {subprocess.py:93} INFO - [0m07:17:05  7 of 35 PASS not_null_order_items_order_id ..................................... [[32mPASS[0m in 0.18s]
+[2025-10-25T07:17:05.864+0000] {subprocess.py:93} INFO - [0m07:17:05  8 of 35 START test not_null_order_items_order_item_id .......................... [RUN]
+[2025-10-25T07:17:06.012+0000] {subprocess.py:93} INFO - [0m07:17:06  8 of 35 PASS not_null_order_items_order_item_id ................................ [[32mPASS[0m in 0.14s]
+[2025-10-25T07:17:06.029+0000] {subprocess.py:93} INFO - [0m07:17:06  9 of 35 START test not_null_order_items_product_card_id ........................ [RUN]
+[2025-10-25T07:17:06.153+0000] {subprocess.py:93} INFO - [0m07:17:06  9 of 35 PASS not_null_order_items_product_card_id .............................. [[32mPASS[0m in 0.12s]
+[2025-10-25T07:17:06.163+0000] {subprocess.py:93} INFO - [0m07:17:06  10 of 35 START test not_null_orders_customer_id ................................ [RUN]
+[2025-10-25T07:17:06.276+0000] {subprocess.py:93} INFO - [0m07:17:06  10 of 35 PASS not_null_orders_customer_id ...................................... [[32mPASS[0m in 0.11s]
+[2025-10-25T07:17:06.286+0000] {subprocess.py:93} INFO - [0m07:17:06  11 of 35 START test not_null_orders_location_id ................................ [RUN]
+[2025-10-25T07:17:06.393+0000] {subprocess.py:93} INFO - [0m07:17:06  11 of 35 PASS not_null_orders_location_id ...................................... [[32mPASS[0m in 0.10s]
+[2025-10-25T07:17:06.403+0000] {subprocess.py:93} INFO - [0m07:17:06  12 of 35 START test not_null_orders_order_id ................................... [RUN]
+[2025-10-25T07:17:06.514+0000] {subprocess.py:93} INFO - [0m07:17:06  12 of 35 PASS not_null_orders_order_id ......................................... [[32mPASS[0m in 0.11s]
+[2025-10-25T07:17:06.522+0000] {subprocess.py:93} INFO - [0m07:17:06  13 of 35 START test not_null_products_category_id .............................. [RUN]
+[2025-10-25T07:17:06.633+0000] {subprocess.py:93} INFO - [0m07:17:06  13 of 35 PASS not_null_products_category_id .................................... [[32mPASS[0m in 0.11s]
+[2025-10-25T07:17:06.644+0000] {subprocess.py:93} INFO - [0m07:17:06  14 of 35 START test not_null_products_product_card_id .......................... [RUN]
+[2025-10-25T07:17:06.773+0000] {subprocess.py:93} INFO - [0m07:17:06  14 of 35 PASS not_null_products_product_card_id ................................ [[32mPASS[0m in 0.13s]
+[2025-10-25T07:17:06.784+0000] {subprocess.py:93} INFO - [0m07:17:06  15 of 35 START test not_null_shipping_mode_shipping_mode_id .................... [RUN]
+[2025-10-25T07:17:06.893+0000] {subprocess.py:93} INFO - [0m07:17:06  15 of 35 PASS not_null_shipping_mode_shipping_mode_id .......................... [[32mPASS[0m in 0.11s]
+[2025-10-25T07:17:06.903+0000] {subprocess.py:93} INFO - [0m07:17:06  16 of 35 START test not_null_shipping_order_id ................................. [RUN]
+[2025-10-25T07:17:07.006+0000] {subprocess.py:93} INFO - [0m07:17:07  16 of 35 PASS not_null_shipping_order_id ....................................... [[32mPASS[0m in 0.10s]
+[2025-10-25T07:17:07.015+0000] {subprocess.py:93} INFO - [0m07:17:07  17 of 35 START test relationships_categories_department_id__department_id__ref_departments_  [RUN]
+[2025-10-25T07:17:07.131+0000] {subprocess.py:93} INFO - [0m07:17:07  17 of 35 PASS relationships_categories_department_id__department_id__ref_departments_  [[32mPASS[0m in 0.11s]
+[2025-10-25T07:17:07.140+0000] {subprocess.py:93} INFO - [0m07:17:07  18 of 35 START test relationships_order_items_order_id__order_id__ref_orders_ .. [RUN]
+[2025-10-25T07:17:07.297+0000] {subprocess.py:93} INFO - [0m07:17:07  18 of 35 PASS relationships_order_items_order_id__order_id__ref_orders_ ........ [[32mPASS[0m in 0.15s]
+[2025-10-25T07:17:07.307+0000] {subprocess.py:93} INFO - [0m07:17:07  19 of 35 START test relationships_order_items_product_card_id__product_card_id__ref_products_  [RUN]
+[2025-10-25T07:17:07.433+0000] {subprocess.py:93} INFO - [0m07:17:07  19 of 35 PASS relationships_order_items_product_card_id__product_card_id__ref_products_  [[32mPASS[0m in 0.12s]
+[2025-10-25T07:17:07.444+0000] {subprocess.py:93} INFO - [0m07:17:07  20 of 35 START test relationships_orders_customer_id__customer_id__ref_customers_  [RUN]
+[2025-10-25T07:17:07.578+0000] {subprocess.py:93} INFO - [0m07:17:07  20 of 35 PASS relationships_orders_customer_id__customer_id__ref_customers_ .... [[32mPASS[0m in 0.13s]
+[2025-10-25T07:17:07.588+0000] {subprocess.py:93} INFO - [0m07:17:07  21 of 35 START test relationships_orders_location_id__location_id__ref_location_  [RUN]
+[2025-10-25T07:17:07.736+0000] {subprocess.py:93} INFO - [0m07:17:07  21 of 35 PASS relationships_orders_location_id__location_id__ref_location_ ..... [[32mPASS[0m in 0.15s]
+[2025-10-25T07:17:07.745+0000] {subprocess.py:93} INFO - [0m07:17:07  22 of 35 START test relationships_products_category_id__category_id__ref_categories_  [RUN]
+[2025-10-25T07:17:07.845+0000] {subprocess.py:93} INFO - [0m07:17:07  22 of 35 PASS relationships_products_category_id__category_id__ref_categories_ . [[32mPASS[0m in 0.10s]
+[2025-10-25T07:17:07.853+0000] {subprocess.py:93} INFO - [0m07:17:07  23 of 35 START test relationships_shipping_delivery_status_id__delivery_status_id__ref_delivery_status_  [RUN]
+[2025-10-25T07:17:07.962+0000] {subprocess.py:93} INFO - [0m07:17:07  23 of 35 PASS relationships_shipping_delivery_status_id__delivery_status_id__ref_delivery_status_  [[32mPASS[0m in 0.11s]
+[2025-10-25T07:17:07.971+0000] {subprocess.py:93} INFO - [0m07:17:07  24 of 35 START test relationships_shipping_order_id__order_id__ref_orders_ ..... [RUN]
+[2025-10-25T07:17:08.102+0000] {subprocess.py:93} INFO - [0m07:17:08  24 of 35 PASS relationships_shipping_order_id__order_id__ref_orders_ ........... [[32mPASS[0m in 0.13s]
+[2025-10-25T07:17:08.111+0000] {subprocess.py:93} INFO - [0m07:17:08  25 of 35 START test relationships_shipping_shipping_mode_id__shipping_mode_id__ref_shipping_mode_  [RUN]
+[2025-10-25T07:17:08.223+0000] {subprocess.py:93} INFO - [0m07:17:08  25 of 35 PASS relationships_shipping_shipping_mode_id__shipping_mode_id__ref_shipping_mode_  [[32mPASS[0m in 0.11s]
+[2025-10-25T07:17:08.232+0000] {subprocess.py:93} INFO - [0m07:17:08  26 of 35 START test unique_categories_category_id .............................. [RUN]
+[2025-10-25T07:17:08.322+0000] {subprocess.py:93} INFO - [0m07:17:08  26 of 35 PASS unique_categories_category_id .................................... [[32mPASS[0m in 0.09s]
+[2025-10-25T07:17:08.331+0000] {subprocess.py:93} INFO - [0m07:17:08  27 of 35 START test unique_customers_customer_id ............................... [RUN]
+[2025-10-25T07:17:08.431+0000] {subprocess.py:93} INFO - [0m07:17:08  27 of 35 PASS unique_customers_customer_id ..................................... [[32mPASS[0m in 0.10s]
+[2025-10-25T07:17:08.440+0000] {subprocess.py:93} INFO - [0m07:17:08  28 of 35 START test unique_delivery_status_delivery_status_id .................. [RUN]
+[2025-10-25T07:17:08.530+0000] {subprocess.py:93} INFO - [0m07:17:08  28 of 35 PASS unique_delivery_status_delivery_status_id ........................ [[32mPASS[0m in 0.09s]
+[2025-10-25T07:17:08.541+0000] {subprocess.py:93} INFO - [0m07:17:08  29 of 35 START test unique_departments_department_id ........................... [RUN]
+[2025-10-25T07:17:08.660+0000] {subprocess.py:93} INFO - [0m07:17:08  29 of 35 PASS unique_departments_department_id ................................. [[32mPASS[0m in 0.12s]
+[2025-10-25T07:17:08.670+0000] {subprocess.py:93} INFO - [0m07:17:08  30 of 35 START test unique_location_location_id ................................ [RUN]
+[2025-10-25T07:17:08.818+0000] {subprocess.py:93} INFO - [0m07:17:08  30 of 35 PASS unique_location_location_id ...................................... [[32mPASS[0m in 0.14s]
+[2025-10-25T07:17:08.827+0000] {subprocess.py:93} INFO - [0m07:17:08  31 of 35 START test unique_order_items_order_item_id ........................... [RUN]
+[2025-10-25T07:17:09.130+0000] {subprocess.py:93} INFO - [0m07:17:09  31 of 35 PASS unique_order_items_order_item_id ................................. [[32mPASS[0m in 0.30s]
+[2025-10-25T07:17:09.139+0000] {subprocess.py:93} INFO - [0m07:17:09  32 of 35 START test unique_orders_order_id ..................................... [RUN]
+[2025-10-25T07:17:09.268+0000] {subprocess.py:93} INFO - [0m07:17:09  32 of 35 PASS unique_orders_order_id ........................................... [[32mPASS[0m in 0.13s]
+[2025-10-25T07:17:09.277+0000] {subprocess.py:93} INFO - [0m07:17:09  33 of 35 START test unique_products_product_card_id ............................ [RUN]
+[2025-10-25T07:17:09.371+0000] {subprocess.py:93} INFO - [0m07:17:09  33 of 35 PASS unique_products_product_card_id .................................. [[32mPASS[0m in 0.09s]
+[2025-10-25T07:17:09.381+0000] {subprocess.py:93} INFO - [0m07:17:09  34 of 35 START test unique_shipping_mode_shipping_mode_id ...................... [RUN]
+[2025-10-25T07:17:09.496+0000] {subprocess.py:93} INFO - [0m07:17:09  34 of 35 PASS unique_shipping_mode_shipping_mode_id ............................ [[32mPASS[0m in 0.11s]
+[2025-10-25T07:17:09.506+0000] {subprocess.py:93} INFO - [0m07:17:09  35 of 35 START test unique_shipping_order_id ................................... [RUN]
+[2025-10-25T07:17:09.637+0000] {subprocess.py:93} INFO - [0m07:17:09  35 of 35 PASS unique_shipping_order_id ......................................... [[32mPASS[0m in 0.13s]
+[2025-10-25T07:17:09.689+0000] {subprocess.py:93} INFO - [0m07:17:09
+[2025-10-25T07:17:09.693+0000] {subprocess.py:93} INFO - [0m07:17:09  Finished running 35 data tests in 0 hours 0 minutes and 5.15 seconds (5.15s).
+[2025-10-25T07:17:09.851+0000] {subprocess.py:93} INFO - [0m07:17:09
+[2025-10-25T07:17:09.854+0000] {subprocess.py:93} INFO - [0m07:17:09  [32mCompleted successfully[0m
+[2025-10-25T07:17:09.858+0000] {subprocess.py:93} INFO - [0m07:17:09
+[2025-10-25T07:17:09.860+0000] {subprocess.py:93} INFO - [0m07:17:09  Done. PASS=35 WARN=0 ERROR=0 SKIP=0 TOTAL=35
+[2025-10-25T07:17:11.822+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-10-25T07:17:11.823+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-10-25T07:17:11.866+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=dataco_supplychain_pipeline, task_id=validate_core, run_id=manual__2025-10-25T07:16:28.960609+00:00, execution_date=20251025T071628, start_date=20251025T071655, end_date=20251025T071711
+[2025-10-25T07:17:11.918+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2025-10-25T07:17:11.942+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-10-25T07:17:11.945+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

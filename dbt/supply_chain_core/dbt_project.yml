@@ -1,0 +1,14 @@
+name: supply_chain_core
+version: "1.0.0"
+config-version: 2
+profile: supply_chain_core
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  supply_chain_core:
+    core:
+      +schema: core              # ให้ลงสคีมา core
+      +materialized: table        # เบาและเร็วสำหรับชั้น core

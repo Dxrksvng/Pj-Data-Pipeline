@@ -1,0 +1,50 @@
+[2025-10-27T09:00:31.780+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-10-27T09:00:31.832+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dataco_supply_chain_pipeline.dbt_run_mart manual__2025-10-27T08:57:01.081751+00:00 [queued]>
+[2025-10-27T09:00:31.853+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dataco_supply_chain_pipeline.dbt_run_mart manual__2025-10-27T08:57:01.081751+00:00 [queued]>
+[2025-10-27T09:00:31.855+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-10-27T09:00:31.884+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_run_mart> on 2025-10-27 08:57:01.081751+00:00
+[2025-10-27T09:00:31.894+0000] {standard_task_runner.py:64} INFO - Started process 603 to run task
+[2025-10-27T09:00:31.899+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dataco_supply_chain_pipeline', 'dbt_run_mart', 'manual__2025-10-27T08:57:01.081751+00:00', '--job-id', '49', '--raw', '--subdir', 'DAGS_FOLDER/DataCo_pipeline_DAG.py', '--cfg-path', '/tmp/tmpfxyvcne3']
+[2025-10-27T09:00:31.903+0000] {standard_task_runner.py:91} INFO - Job 49: Subtask dbt_run_mart
+[2025-10-27T09:00:32.020+0000] {task_command.py:426} INFO - Running <TaskInstance: dataco_supply_chain_pipeline.dbt_run_mart manual__2025-10-27T08:57:01.081751+00:00 [running]> on host 787267c1a4b2
+[2025-10-27T09:00:32.156+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='bi@example.com' AIRFLOW_CTX_DAG_OWNER='DE-team' AIRFLOW_CTX_DAG_ID='dataco_supply_chain_pipeline' AIRFLOW_CTX_TASK_ID='dbt_run_mart' AIRFLOW_CTX_EXECUTION_DATE='2025-10-27T08:57:01.081751+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-10-27T08:57:01.081751+00:00'
+[2025-10-27T09:00:32.157+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-10-27T09:00:32.169+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-10-27T09:00:32.170+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /usr/app/supply_chain_mart && dbt run --select mart']
+[2025-10-27T09:00:32.185+0000] {subprocess.py:86} INFO - Output:
+[2025-10-27T09:00:36.609+0000] {subprocess.py:93} INFO - [0m09:00:36  Running with dbt=1.9.1
+[2025-10-27T09:00:37.011+0000] {subprocess.py:93} INFO - [0m09:00:37  Registered adapter: postgres=1.9.1
+[2025-10-27T09:00:39.668+0000] {subprocess.py:93} INFO - [0m09:00:39  Found 9 models, 25 data tests, 10 sources, 550 macros
+[2025-10-27T09:00:39.676+0000] {subprocess.py:93} INFO - [0m09:00:39
+[2025-10-27T09:00:39.678+0000] {subprocess.py:93} INFO - [0m09:00:39  Concurrency: 1 threads (target='dev')
+[2025-10-27T09:00:39.681+0000] {subprocess.py:93} INFO - [0m09:00:39
+[2025-10-27T09:00:39.897+0000] {subprocess.py:93} INFO - [0m09:00:39  1 of 9 START sql table model mart_mart.dim_Customer ............................ [RUN]
+[2025-10-27T09:00:40.235+0000] {subprocess.py:93} INFO - [0m09:00:40  1 of 9 OK created sql table model mart_mart.dim_Customer ....................... [[32mSELECT 20652[0m in 0.33s]
+[2025-10-27T09:00:40.247+0000] {subprocess.py:93} INFO - [0m09:00:40  2 of 9 START sql table model mart_mart.dim_Date ................................ [RUN]
+[2025-10-27T09:00:40.535+0000] {subprocess.py:93} INFO - [0m09:00:40  2 of 9 OK created sql table model mart_mart.dim_Date ........................... [[32mSELECT 1133[0m in 0.28s]
+[2025-10-27T09:00:40.544+0000] {subprocess.py:93} INFO - [0m09:00:40  3 of 9 START sql table model mart_mart.dim_DeliveryStatus ...................... [RUN]
+[2025-10-27T09:00:40.749+0000] {subprocess.py:93} INFO - [0m09:00:40  3 of 9 OK created sql table model mart_mart.dim_DeliveryStatus ................. [[32mSELECT 4[0m in 0.20s]
+[2025-10-27T09:00:40.763+0000] {subprocess.py:93} INFO - [0m09:00:40  4 of 9 START sql table model mart_mart.dim_Location ............................ [RUN]
+[2025-10-27T09:00:41.050+0000] {subprocess.py:93} INFO - [0m09:00:41  4 of 9 OK created sql table model mart_mart.dim_Location ....................... [[32mSELECT 64990[0m in 0.28s]
+[2025-10-27T09:00:41.060+0000] {subprocess.py:93} INFO - [0m09:00:41  5 of 9 START sql table model mart_mart.dim_OrderStatus ......................... [RUN]
+[2025-10-27T09:00:41.243+0000] {subprocess.py:93} INFO - [0m09:00:41  5 of 9 OK created sql table model mart_mart.dim_OrderStatus .................... [[32mSELECT 9[0m in 0.18s]
+[2025-10-27T09:00:41.252+0000] {subprocess.py:93} INFO - [0m09:00:41  6 of 9 START sql table model mart_mart.dim_Product ............................. [RUN]
+[2025-10-27T09:00:41.398+0000] {subprocess.py:93} INFO - [0m09:00:41  6 of 9 OK created sql table model mart_mart.dim_Product ........................ [[32mSELECT 118[0m in 0.14s]
+[2025-10-27T09:00:41.406+0000] {subprocess.py:93} INFO - [0m09:00:41  7 of 9 START sql table model mart_mart.dim_ShippingMode ........................ [RUN]
+[2025-10-27T09:00:41.541+0000] {subprocess.py:93} INFO - [0m09:00:41  7 of 9 OK created sql table model mart_mart.dim_ShippingMode ................... [[32mSELECT 4[0m in 0.13s]
+[2025-10-27T09:00:41.550+0000] {subprocess.py:93} INFO - [0m09:00:41  8 of 9 START sql table model mart_mart.fct_sales_items ......................... [RUN]
+[2025-10-27T09:00:42.522+0000] {subprocess.py:93} INFO - [0m09:00:42  8 of 9 OK created sql table model mart_mart.fct_sales_items .................... [[32mSELECT 180519[0m in 0.97s]
+[2025-10-27T09:00:42.531+0000] {subprocess.py:93} INFO - [0m09:00:42  9 of 9 START sql table model mart_mart.fct_shipping_orders ..................... [RUN]
+[2025-10-27T09:00:43.123+0000] {subprocess.py:93} INFO - [0m09:00:43  9 of 9 OK created sql table model mart_mart.fct_shipping_orders ................ [[32mSELECT 65752[0m in 0.59s]
+[2025-10-27T09:00:43.169+0000] {subprocess.py:93} INFO - [0m09:00:43
+[2025-10-27T09:00:43.171+0000] {subprocess.py:93} INFO - [0m09:00:43  Finished running 9 table models in 0 hours 0 minutes and 3.49 seconds (3.49s).
+[2025-10-27T09:00:43.299+0000] {subprocess.py:93} INFO - [0m09:00:43
+[2025-10-27T09:00:43.302+0000] {subprocess.py:93} INFO - [0m09:00:43  [32mCompleted successfully[0m
+[2025-10-27T09:00:43.305+0000] {subprocess.py:93} INFO - [0m09:00:43
+[2025-10-27T09:00:43.307+0000] {subprocess.py:93} INFO - [0m09:00:43  Done. PASS=9 WARN=0 ERROR=0 SKIP=0 TOTAL=9
+[2025-10-27T09:00:45.569+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-10-27T09:00:45.570+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-10-27T09:00:45.605+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=dataco_supply_chain_pipeline, task_id=dbt_run_mart, run_id=manual__2025-10-27T08:57:01.081751+00:00, execution_date=20251027T085701, start_date=20251027T090031, end_date=20251027T090045
+[2025-10-27T09:00:45.637+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2025-10-27T09:00:45.662+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-10-27T09:00:45.665+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

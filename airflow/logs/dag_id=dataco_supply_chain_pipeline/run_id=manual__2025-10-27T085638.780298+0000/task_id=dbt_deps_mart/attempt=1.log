@@ -1,0 +1,3 @@
+[2025-10-27T08:56:41.031+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-10-27T08:56:41.082+0000] {taskinstance.py:2066} INFO - Dependencies not met for <TaskInstance: dataco_supply_chain_pipeline.dbt_deps_mart manual__2025-10-27T08:56:38.780298+00:00 [queued]>, dependency 'Trigger Rule' FAILED: Task's trigger rule 'all_success' requires all upstream tasks to have succeeded, but found 1 non-success(es). upstream_states=_UpstreamTIStates(success=0, skipped=0, failed=0, upstream_failed=0, removed=0, done=0, success_setup=0, skipped_setup=0), upstream_task_ids={'dbt_test_core'}
+[2025-10-27T08:56:41.085+0000] {local_task_job_runner.py:163} INFO - Task is not able to be run

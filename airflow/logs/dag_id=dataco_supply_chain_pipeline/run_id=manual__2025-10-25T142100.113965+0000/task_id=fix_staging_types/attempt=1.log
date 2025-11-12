@@ -1,0 +1,142 @@
+[2025-10-25T14:22:04.162+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-10-25T14:22:04.206+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dataco_supply_chain_pipeline.fix_staging_types manual__2025-10-25T14:21:00.113965+00:00 [queued]>
+[2025-10-25T14:22:04.223+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dataco_supply_chain_pipeline.fix_staging_types manual__2025-10-25T14:21:00.113965+00:00 [queued]>
+[2025-10-25T14:22:04.225+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-10-25T14:22:04.249+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): fix_staging_types> on 2025-10-25 14:21:00.113965+00:00
+[2025-10-25T14:22:04.259+0000] {standard_task_runner.py:64} INFO - Started process 2549 to run task
+[2025-10-25T14:22:04.263+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dataco_supply_chain_pipeline', 'fix_staging_types', 'manual__2025-10-25T14:21:00.113965+00:00', '--job-id', '14', '--raw', '--subdir', 'DAGS_FOLDER/DataCo_pipeline_DAG.py', '--cfg-path', '/tmp/tmpkf6o2ly6']
+[2025-10-25T14:22:04.266+0000] {standard_task_runner.py:91} INFO - Job 14: Subtask fix_staging_types
+[2025-10-25T14:22:04.340+0000] {task_command.py:426} INFO - Running <TaskInstance: dataco_supply_chain_pipeline.fix_staging_types manual__2025-10-25T14:21:00.113965+00:00 [running]> on host 2f7836fe1173
+[2025-10-25T14:22:04.466+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='bi@example.com' AIRFLOW_CTX_DAG_OWNER='DE-team' AIRFLOW_CTX_DAG_ID='dataco_supply_chain_pipeline' AIRFLOW_CTX_TASK_ID='fix_staging_types' AIRFLOW_CTX_EXECUTION_DATE='2025-10-25T14:21:00.113965+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-10-25T14:21:00.113965+00:00'
+[2025-10-25T14:22:04.468+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-10-25T14:22:04.511+0000] {logging_mixin.py:188} INFO - Error fixing data types: (psycopg2.errors.SyntaxError) syntax error at or near "ALTER"
+LINE 5:         ALTER COLUMN "Sales" TYPE NUMERIC(10, 5) USING "Sale...
+                ^
+
+[SQL: 
+    ALTER TABLE staging.datacosupplychaindataset_tmp
+        ALTER COLUMN "order date (DateOrders)" TYPE TIMESTAMP USING "order date (DateOrders)"::timestamp,
+        ALTER COLUMN "shipping date (DateOrders)" TYPE TIMESTAMP USING "shipping date (DateOrders)"::timestamp
+        ALTER COLUMN "Sales" TYPE NUMERIC(10, 5) USING "Sales"::numeric,
+        ALTER COLUMN "Product Price" TYPE NUMERIC(10, 5) USING "Product Price"::numeric,
+        ALTER COLUMN "Latitude" TYPE DOUBLE PRECISION USING "Latitude"::double precision,
+        ALTER COLUMN "Longitude" TYPE DOUBLE PRECISION USING "Longitude"::double precision,
+        ALTER COLUMN "Order Item Discount Rate" TYPE NUMERIC(3, 2) USING "Order Item Discount Rate"::numeric,
+        ALTER COLUMN "Order Item Total" TYPE NUMERIC(10, 5) USING "Order Item Total"::numeric,
+        ALTER COLUMN "Order Item Discount" TYPE NUMERIC(10, 5) USING "Order Item Discount"::numeric,
+        ALTER COLUMN "Sales per customer" TYPE NUMERIC(10, 5) USING "Sales per customer"::numeric,
+        ALTER COLUMN "Benefit per order" TYPE NUMERIC(10, 5) USING "Benefit per order"::numeric,
+        ALTER COLUMN "Order Profit Per Order" TYPE NUMERIC(10, 5) USING "Order Profit Per Order"::numeric,
+        ALTER COLUMN "Order Item Profit Ratio" TYPE NUMERIC(5, 4) USING "Order Item Profit Ratio"::numeric,
+        ALTER COLUMN "Order Item Product Price" TYPE NUMERIC(10, 5) USING "Order Item Product Price"::numeric,
+        ALTER COLUMN "Order Item Quantity" TYPE INTEGER USING "Order Item Quantity"::integer,
+        ALTER COLUMN "Late_delivery_risk" TYPE SMALLINT USING "Late_delivery_risk"::smallint,
+        ALTER COLUMN "Product Status" TYPE SMALLINT USING "Product Status"::smallint,
+        ALTER COLUMN "Days for shipment (scheduled)" TYPE INTEGER USING "Days for shipment (scheduled)"::integer,
+        ALTER COLUMN "Days for shipping (real)" TYPE INTEGER USING "Days for shipping (real)"::integer;
+    ]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+[2025-10-25T14:22:04.512+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-10-25T14:22:04.513+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1900, in _execute_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.SyntaxError: syntax error at or near "ALTER"
+LINE 5:         ALTER COLUMN "Sales" TYPE NUMERIC(10, 5) USING "Sale...
+                ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/usr/local/lib/python3.10/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/DataCo_pipeline_DAG.py", line 67, in fix_data_types_in_staging
+    conn.execute(sql_command)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1380, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1572, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1943, in _execute_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2124, in _handle_dbapi_exception
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1900, in _execute_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.SyntaxError) syntax error at or near "ALTER"
+LINE 5:         ALTER COLUMN "Sales" TYPE NUMERIC(10, 5) USING "Sale...
+                ^
+
+[SQL: 
+    ALTER TABLE staging.datacosupplychaindataset_tmp
+        ALTER COLUMN "order date (DateOrders)" TYPE TIMESTAMP USING "order date (DateOrders)"::timestamp,
+        ALTER COLUMN "shipping date (DateOrders)" TYPE TIMESTAMP USING "shipping date (DateOrders)"::timestamp
+        ALTER COLUMN "Sales" TYPE NUMERIC(10, 5) USING "Sales"::numeric,
+        ALTER COLUMN "Product Price" TYPE NUMERIC(10, 5) USING "Product Price"::numeric,
+        ALTER COLUMN "Latitude" TYPE DOUBLE PRECISION USING "Latitude"::double precision,
+        ALTER COLUMN "Longitude" TYPE DOUBLE PRECISION USING "Longitude"::double precision,
+        ALTER COLUMN "Order Item Discount Rate" TYPE NUMERIC(3, 2) USING "Order Item Discount Rate"::numeric,
+        ALTER COLUMN "Order Item Total" TYPE NUMERIC(10, 5) USING "Order Item Total"::numeric,
+        ALTER COLUMN "Order Item Discount" TYPE NUMERIC(10, 5) USING "Order Item Discount"::numeric,
+        ALTER COLUMN "Sales per customer" TYPE NUMERIC(10, 5) USING "Sales per customer"::numeric,
+        ALTER COLUMN "Benefit per order" TYPE NUMERIC(10, 5) USING "Benefit per order"::numeric,
+        ALTER COLUMN "Order Profit Per Order" TYPE NUMERIC(10, 5) USING "Order Profit Per Order"::numeric,
+        ALTER COLUMN "Order Item Profit Ratio" TYPE NUMERIC(5, 4) USING "Order Item Profit Ratio"::numeric,
+        ALTER COLUMN "Order Item Product Price" TYPE NUMERIC(10, 5) USING "Order Item Product Price"::numeric,
+        ALTER COLUMN "Order Item Quantity" TYPE INTEGER USING "Order Item Quantity"::integer,
+        ALTER COLUMN "Late_delivery_risk" TYPE SMALLINT USING "Late_delivery_risk"::smallint,
+        ALTER COLUMN "Product Status" TYPE SMALLINT USING "Product Status"::smallint,
+        ALTER COLUMN "Days for shipment (scheduled)" TYPE INTEGER USING "Days for shipment (scheduled)"::integer,
+        ALTER COLUMN "Days for shipping (real)" TYPE INTEGER USING "Days for shipping (real)"::integer;
+    ]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+[2025-10-25T14:22:04.612+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=dataco_supply_chain_pipeline, task_id=fix_staging_types, run_id=manual__2025-10-25T14:21:00.113965+00:00, execution_date=20251025T142100, start_date=20251025T142204, end_date=20251025T142204
+[2025-10-25T14:22:04.660+0000] {logging_mixin.py:188} WARNING - /usr/local/lib/python3.10/site-packages/***/utils/email.py:154 RemovedInAirflow3Warning: Fetching SMTP credentials from configuration variables will be deprecated in a future release. Please set credentials using a connection instead.
+[2025-10-25T14:22:04.661+0000] {email.py:271} INFO - Email alerting: attempt 1
+[2025-10-25T14:22:07.731+0000] {email.py:282} INFO - Sent an alert email to ['bi@example.com']
+[2025-10-25T14:22:09.219+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 14 for task fix_staging_types ((psycopg2.errors.SyntaxError) syntax error at or near "ALTER"
+LINE 5:         ALTER COLUMN "Sales" TYPE NUMERIC(10, 5) USING "Sale...
+                ^
+
+[SQL: 
+    ALTER TABLE staging.datacosupplychaindataset_tmp
+        ALTER COLUMN "order date (DateOrders)" TYPE TIMESTAMP USING "order date (DateOrders)"::timestamp,
+        ALTER COLUMN "shipping date (DateOrders)" TYPE TIMESTAMP USING "shipping date (DateOrders)"::timestamp
+        ALTER COLUMN "Sales" TYPE NUMERIC(10, 5) USING "Sales"::numeric,
+        ALTER COLUMN "Product Price" TYPE NUMERIC(10, 5) USING "Product Price"::numeric,
+        ALTER COLUMN "Latitude" TYPE DOUBLE PRECISION USING "Latitude"::double precision,
+        ALTER COLUMN "Longitude" TYPE DOUBLE PRECISION USING "Longitude"::double precision,
+        ALTER COLUMN "Order Item Discount Rate" TYPE NUMERIC(3, 2) USING "Order Item Discount Rate"::numeric,
+        ALTER COLUMN "Order Item Total" TYPE NUMERIC(10, 5) USING "Order Item Total"::numeric,
+        ALTER COLUMN "Order Item Discount" TYPE NUMERIC(10, 5) USING "Order Item Discount"::numeric,
+        ALTER COLUMN "Sales per customer" TYPE NUMERIC(10, 5) USING "Sales per customer"::numeric,
+        ALTER COLUMN "Benefit per order" TYPE NUMERIC(10, 5) USING "Benefit per order"::numeric,
+        ALTER COLUMN "Order Profit Per Order" TYPE NUMERIC(10, 5) USING "Order Profit Per Order"::numeric,
+        ALTER COLUMN "Order Item Profit Ratio" TYPE NUMERIC(5, 4) USING "Order Item Profit Ratio"::numeric,
+        ALTER COLUMN "Order Item Product Price" TYPE NUMERIC(10, 5) USING "Order Item Product Price"::numeric,
+        ALTER COLUMN "Order Item Quantity" TYPE INTEGER USING "Order Item Quantity"::integer,
+        ALTER COLUMN "Late_delivery_risk" TYPE SMALLINT USING "Late_delivery_risk"::smallint,
+        ALTER COLUMN "Product Status" TYPE SMALLINT USING "Product Status"::smallint,
+        ALTER COLUMN "Days for shipment (scheduled)" TYPE INTEGER USING "Days for shipment (scheduled)"::integer,
+        ALTER COLUMN "Days for shipping (real)" TYPE INTEGER USING "Days for shipping (real)"::integer;
+    ]
+(Background on this error at: https://sqlalche.me/e/14/f405); 2549)
+[2025-10-25T14:22:09.264+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2025-10-25T14:22:09.307+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-10-25T14:22:09.313+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

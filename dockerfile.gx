@@ -1,0 +1,24 @@
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PATH="/usr/local/bin:${PATH}"
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash build-essential libpq-dev git \
+ && rm -rf /var/lib/apt/lists/*
+
+# ใช้ python -m pip เพื่อให้แน่ใจว่าลงกับ Python ตัวนี้
+RUN python -m pip install --upgrade pip && \
+    python -m pip install --no-cache-dir \
+      "great_expectations==0.18.15" \
+      "SQLAlchemy<2.0" \
+      "pydantic<2" \
+      "psycopg2-binary" \
+      "ruamel.yaml" \
+      "jinja2"
+
+WORKDIR /workspace
+
+# กันคอนเทนเนอร์ดับเอง
+CMD ["bash", "-lc", "sleep infinity"]

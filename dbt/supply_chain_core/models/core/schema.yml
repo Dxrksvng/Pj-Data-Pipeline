@@ -1,0 +1,139 @@
+version: 2
+
+sources:
+  - name: staging  # <-- ชื่อ schema ใน Postgres ที่เก็บข้อมูลดิบ
+    description: Raw data source from Postgres staging schema
+    tables:
+      - name: datacosupplychaindataset_tmp
+        description: The raw, denormalized supply chain data.
+
+models:
+  # --- CORE 3NF MODELS ---
+  - name: departments
+    description: Dimension table for product departments.
+    columns:
+      - name: department_id
+        tests:
+          - unique
+          - not_null
+
+  - name: categories
+    description: Dimension table for product categories.
+    columns:
+      - name: category_id
+        tests:
+          - unique
+          - not_null
+      - name: department_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('departments')
+              field: department_id
+
+  - name: products
+    description: Dimension table for products.
+    columns:
+      - name: product_card_id
+        tests:
+          - unique
+          - not_null
+      - name: category_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('categories')
+              field: category_id
+
+  - name: customers
+    description: Dimension table for customers.
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: location
+    description: Dimension table for geographical location data.
+    columns:
+      - name: location_id
+        tests:
+          - unique
+          - not_null
+
+  - name: shipping_mode
+    description: Dimension table for shipping modes.
+    columns:
+      - name: shipping_mode_id
+        tests:
+          - unique
+          - not_null
+
+  - name: delivery_status
+    description: Dimension table for delivery statuses.
+    columns:
+      - name: delivery_status_id
+        tests:
+          - unique
+          - not_null
+
+  - name: orders
+    description: Transaction table for order headers.
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('customers')
+              field: customer_id
+      - name: location_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('location')
+              field: location_id
+
+  - name: shipping
+    description: Table for shipping details, 1-to-1 with orders.
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('orders')
+              field: order_id
+      - name: shipping_mode_id
+        tests:
+          - relationships:
+              to: ref('shipping_mode')
+              field: shipping_mode_id
+      - name: delivery_status_id
+        tests:
+          - relationships:
+              to: ref('delivery_status')
+              field: delivery_status_id
+
+  - name: order_items
+    description: Fact table for individual line items in each order.
+    columns:
+      - name: order_item_id
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('orders')
+              field: order_id
+      - name: product_card_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('products')
+              field: product_card_id

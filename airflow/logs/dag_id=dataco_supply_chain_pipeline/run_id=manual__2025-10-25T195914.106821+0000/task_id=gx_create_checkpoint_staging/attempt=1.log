@@ -1,0 +1,21 @@
+[2025-10-25T20:00:59.289+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-10-25T20:00:59.343+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dataco_supply_chain_pipeline.gx_create_checkpoint_staging manual__2025-10-25T19:59:14.106821+00:00 [queued]>
+[2025-10-25T20:00:59.359+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dataco_supply_chain_pipeline.gx_create_checkpoint_staging manual__2025-10-25T19:59:14.106821+00:00 [queued]>
+[2025-10-25T20:00:59.360+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-10-25T20:00:59.383+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): gx_create_checkpoint_staging> on 2025-10-25 19:59:14.106821+00:00
+[2025-10-25T20:00:59.393+0000] {standard_task_runner.py:64} INFO - Started process 1237 to run task
+[2025-10-25T20:00:59.395+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dataco_supply_chain_pipeline', 'gx_create_checkpoint_staging', 'manual__2025-10-25T19:59:14.106821+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/DataCo_pipeline_DAG.py', '--cfg-path', '/tmp/tmpdow9ykdg']
+[2025-10-25T20:00:59.399+0000] {standard_task_runner.py:91} INFO - Job 30: Subtask gx_create_checkpoint_staging
+[2025-10-25T20:00:59.490+0000] {task_command.py:426} INFO - Running <TaskInstance: dataco_supply_chain_pipeline.gx_create_checkpoint_staging manual__2025-10-25T19:59:14.106821+00:00 [running]> on host cb6b571dc9d3
+[2025-10-25T20:00:59.624+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='bi@example.com' AIRFLOW_CTX_DAG_OWNER='DE-team' AIRFLOW_CTX_DAG_ID='dataco_supply_chain_pipeline' AIRFLOW_CTX_TASK_ID='gx_create_checkpoint_staging' AIRFLOW_CTX_EXECUTION_DATE='2025-10-25T19:59:14.106821+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-10-25T19:59:14.106821+00:00'
+[2025-10-25T20:00:59.626+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-10-25T20:00:59.640+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-10-25T20:00:59.642+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /workspace && python gx_scripts/create_supply_chain_checkpoint.py']
+[2025-10-25T20:00:59.657+0000] {subprocess.py:86} INFO - Output:
+[2025-10-25T20:01:06.573+0000] {subprocess.py:93} INFO - ✅ Checkpoint 'stg_supply_chain_checkpoint' is created.
+[2025-10-25T20:01:07.533+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-10-25T20:01:07.535+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-10-25T20:01:07.572+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=dataco_supply_chain_pipeline, task_id=gx_create_checkpoint_staging, run_id=manual__2025-10-25T19:59:14.106821+00:00, execution_date=20251025T195914, start_date=20251025T200059, end_date=20251025T200107
+[2025-10-25T20:01:07.623+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2025-10-25T20:01:07.674+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-10-25T20:01:07.676+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

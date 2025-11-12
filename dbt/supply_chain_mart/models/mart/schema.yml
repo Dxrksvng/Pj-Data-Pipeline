@@ -1,0 +1,116 @@
+version: 2
+
+sources:
+  - name: core_core  # <-- ชื่อ schema ใน Postgres ที่เก็บข้อมูลดิบ
+    description: Core 3NF schema built by the upstream dbt project.
+    tables:
+      - name: orders
+      - name: order_items
+      - name: shipping
+      - name: customers
+      - name: products
+      - name: categories
+      - name: departments
+      - name: location
+      - name: shipping_mode
+      - name: delivery_status
+
+# --------------------------------------------------------------------
+# 2. นิยาม MODELS (ตาราง Marts ที่ project นี้จะสร้าง)
+# --------------------------------------------------------------------
+models:
+  #--- DIMENSIONS ---
+  - name: dim_Date
+    description: มิติข้อมูลวันที่ ถูกสร้างขึ้นเพื่อการวิเคราะห์
+    columns:
+      - name: date_key
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_Customer
+    description: มิติข้อมูลลูกค้า (Conformed Dimension)
+    columns:
+      - name: customer_key
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_Location
+    description: มิติข้อมูลสถานที่/ร้านค้า (Conformed Dimension)
+    columns:
+      - name: location_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_Product
+    description: มิติข้อมูลสินค้า (Conformed Dimension) ที่รวม Category และ Department แล้ว
+    columns:
+      - name: product_key
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_OrderStatus
+    description: มิติข้อมูลสถานะคำสั่งซื้อ
+    columns:
+      - name: order_status_key
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_ShippingMode
+    description: มิติข้อมูลรูปแบบการจัดส่ง (Conformed Dimension)
+    columns:
+      - name: shipping_mode_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_DeliveryStatus
+    description: มิติข้อมูลสถานะการจัดส่ง (Conformed Dimension)
+    columns:
+      - name: delivery_status_id
+        tests:
+          - unique
+          - not_null
+
+  #--- FACTS ---
+  - name: fct_sales_items
+    description: Fact Table สำหรับการขาย (Grain 1 แถวต่อ 1 Order Item)
+    columns:
+      - name: order_item_id
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        tests:
+          - not_null
+      # --- (เพิ่ม Tests สำหรับ FKs) ---
+      - name: order_date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_Date') 
+              field: date_key
+      - name: product_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_Product') 
+              field: product_key
+      - name: customer_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_Customer') 
+              field: customer_key
+
+  - name: fct_shipping_orders
+    description: Fact Table สำหรับการขนส่ง (Grain 1 แถวต่อ 1 Order)
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null

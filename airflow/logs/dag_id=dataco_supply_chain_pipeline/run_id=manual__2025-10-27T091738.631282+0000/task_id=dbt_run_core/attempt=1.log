@@ -1,0 +1,53 @@
+[2025-10-27T09:20:06.654+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-10-27T09:20:06.697+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dataco_supply_chain_pipeline.dbt_run_core manual__2025-10-27T09:17:38.631282+00:00 [queued]>
+[2025-10-27T09:20:06.709+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dataco_supply_chain_pipeline.dbt_run_core manual__2025-10-27T09:17:38.631282+00:00 [queued]>
+[2025-10-27T09:20:06.711+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-10-27T09:20:06.728+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_run_core> on 2025-10-27 09:17:38.631282+00:00
+[2025-10-27T09:20:06.737+0000] {standard_task_runner.py:64} INFO - Started process 540 to run task
+[2025-10-27T09:20:06.740+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dataco_supply_chain_pipeline', 'dbt_run_core', 'manual__2025-10-27T09:17:38.631282+00:00', '--job-id', '59', '--raw', '--subdir', 'DAGS_FOLDER/DataCo_pipeline_DAG.py', '--cfg-path', '/tmp/tmpwndq60nc']
+[2025-10-27T09:20:06.742+0000] {standard_task_runner.py:91} INFO - Job 59: Subtask dbt_run_core
+[2025-10-27T09:20:06.814+0000] {task_command.py:426} INFO - Running <TaskInstance: dataco_supply_chain_pipeline.dbt_run_core manual__2025-10-27T09:17:38.631282+00:00 [running]> on host d83e985f9bb6
+[2025-10-27T09:20:06.950+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='bi@example.com' AIRFLOW_CTX_DAG_OWNER='DE-team' AIRFLOW_CTX_DAG_ID='dataco_supply_chain_pipeline' AIRFLOW_CTX_TASK_ID='dbt_run_core' AIRFLOW_CTX_EXECUTION_DATE='2025-10-27T09:17:38.631282+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-10-27T09:17:38.631282+00:00'
+[2025-10-27T09:20:06.952+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-10-27T09:20:06.964+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-10-27T09:20:06.966+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /usr/app/supply_chain_core && dbt run --select core']
+[2025-10-27T09:20:06.981+0000] {subprocess.py:86} INFO - Output:
+[2025-10-27T09:20:11.490+0000] {subprocess.py:93} INFO - [0m09:20:11  Running with dbt=1.9.1
+[2025-10-27T09:20:11.934+0000] {subprocess.py:93} INFO - [0m09:20:11  Registered adapter: postgres=1.9.1
+[2025-10-27T09:20:12.121+0000] {subprocess.py:93} INFO - [0m09:20:12  Unable to do partial parsing because saved manifest not found. Starting full parse.
+[2025-10-27T09:20:17.856+0000] {subprocess.py:93} INFO - [0m09:20:17  Found 10 models, 35 data tests, 1 source, 550 macros
+[2025-10-27T09:20:17.867+0000] {subprocess.py:93} INFO - [0m09:20:17
+[2025-10-27T09:20:17.870+0000] {subprocess.py:93} INFO - [0m09:20:17  Concurrency: 1 threads (target='dev')
+[2025-10-27T09:20:17.873+0000] {subprocess.py:93} INFO - [0m09:20:17
+[2025-10-27T09:20:18.179+0000] {subprocess.py:93} INFO - [0m09:20:18  1 of 10 START sql table model core_core.categories ............................. [RUN]
+[2025-10-27T09:20:18.604+0000] {subprocess.py:93} INFO - [0m09:20:18  1 of 10 OK created sql table model core_core.categories ........................ [[32mSELECT 51[0m in 0.42s]
+[2025-10-27T09:20:18.614+0000] {subprocess.py:93} INFO - [0m09:20:18  2 of 10 START sql table model core_core.customers .............................. [RUN]
+[2025-10-27T09:20:19.028+0000] {subprocess.py:93} INFO - [0m09:20:19  2 of 10 OK created sql table model core_core.customers ......................... [[32mSELECT 20652[0m in 0.41s]
+[2025-10-27T09:20:19.038+0000] {subprocess.py:93} INFO - [0m09:20:19  3 of 10 START sql table model core_core.delivery_status ........................ [RUN]
+[2025-10-27T09:20:19.241+0000] {subprocess.py:93} INFO - [0m09:20:19  3 of 10 OK created sql table model core_core.delivery_status ................... [[32mSELECT 4[0m in 0.20s]
+[2025-10-27T09:20:19.251+0000] {subprocess.py:93} INFO - [0m09:20:19  4 of 10 START sql table model core_core.departments ............................ [RUN]
+[2025-10-27T09:20:19.471+0000] {subprocess.py:93} INFO - [0m09:20:19  4 of 10 OK created sql table model core_core.departments ....................... [[32mSELECT 11[0m in 0.21s]
+[2025-10-27T09:20:19.482+0000] {subprocess.py:93} INFO - [0m09:20:19  5 of 10 START sql table model core_core.location ............................... [RUN]
+[2025-10-27T09:20:20.488+0000] {subprocess.py:93} INFO - [0m09:20:20  5 of 10 OK created sql table model core_core.location .......................... [[32mSELECT 64990[0m in 1.00s]
+[2025-10-27T09:20:20.498+0000] {subprocess.py:93} INFO - [0m09:20:20  6 of 10 START sql table model core_core.order_items ............................ [RUN]
+[2025-10-27T09:20:21.199+0000] {subprocess.py:93} INFO - [0m09:20:21  6 of 10 OK created sql table model core_core.order_items ....................... [[32mSELECT 180519[0m in 0.69s]
+[2025-10-27T09:20:21.209+0000] {subprocess.py:93} INFO - [0m09:20:21  7 of 10 START sql table model core_core.products ............................... [RUN]
+[2025-10-27T09:20:21.483+0000] {subprocess.py:93} INFO - [0m09:20:21  7 of 10 OK created sql table model core_core.products .......................... [[32mSELECT 118[0m in 0.27s]
+[2025-10-27T09:20:21.493+0000] {subprocess.py:93} INFO - [0m09:20:21  8 of 10 START sql table model core_core.shipping_mode .......................... [RUN]
+[2025-10-27T09:20:21.739+0000] {subprocess.py:93} INFO - [0m09:20:21  8 of 10 OK created sql table model core_core.shipping_mode ..................... [[32mSELECT 4[0m in 0.24s]
+[2025-10-27T09:20:21.749+0000] {subprocess.py:93} INFO - [0m09:20:21  9 of 10 START sql table model core_core.orders ................................. [RUN]
+[2025-10-27T09:20:23.735+0000] {subprocess.py:93} INFO - [0m09:20:23  9 of 10 OK created sql table model core_core.orders ............................ [[32mSELECT 65752[0m in 1.98s]
+[2025-10-27T09:20:23.746+0000] {subprocess.py:93} INFO - [0m09:20:23  10 of 10 START sql table model core_core.shipping .............................. [RUN]
+[2025-10-27T09:20:24.432+0000] {subprocess.py:93} INFO - [0m09:20:24  10 of 10 OK created sql table model core_core.shipping ......................... [[32mSELECT 65752[0m in 0.68s]
+[2025-10-27T09:20:24.489+0000] {subprocess.py:93} INFO - [0m09:20:24
+[2025-10-27T09:20:24.492+0000] {subprocess.py:93} INFO - [0m09:20:24  Finished running 10 table models in 0 hours 0 minutes and 6.61 seconds (6.61s).
+[2025-10-27T09:20:24.674+0000] {subprocess.py:93} INFO - [0m09:20:24
+[2025-10-27T09:20:24.677+0000] {subprocess.py:93} INFO - [0m09:20:24  [32mCompleted successfully[0m
+[2025-10-27T09:20:24.680+0000] {subprocess.py:93} INFO - [0m09:20:24
+[2025-10-27T09:20:24.684+0000] {subprocess.py:93} INFO - [0m09:20:24  Done. PASS=10 WARN=0 ERROR=0 SKIP=0 TOTAL=10
+[2025-10-27T09:20:26.959+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-10-27T09:20:26.961+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-10-27T09:20:27.001+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=dataco_supply_chain_pipeline, task_id=dbt_run_core, run_id=manual__2025-10-27T09:17:38.631282+00:00, execution_date=20251027T091738, start_date=20251027T092006, end_date=20251027T092027
+[2025-10-27T09:20:27.038+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2025-10-27T09:20:27.073+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-10-27T09:20:27.076+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

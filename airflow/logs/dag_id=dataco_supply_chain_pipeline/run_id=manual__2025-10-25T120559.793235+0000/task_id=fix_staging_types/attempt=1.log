@@ -1,0 +1,36 @@
+[2025-10-25T12:06:58.559+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-10-25T12:06:58.619+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dataco_supply_chain_pipeline.fix_staging_types manual__2025-10-25T12:05:59.793235+00:00 [queued]>
+[2025-10-25T12:06:58.637+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dataco_supply_chain_pipeline.fix_staging_types manual__2025-10-25T12:05:59.793235+00:00 [queued]>
+[2025-10-25T12:06:58.638+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-10-25T12:06:58.666+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): fix_staging_types> on 2025-10-25 12:05:59.793235+00:00
+[2025-10-25T12:06:58.677+0000] {standard_task_runner.py:64} INFO - Started process 2190 to run task
+[2025-10-25T12:06:58.682+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dataco_supply_chain_pipeline', 'fix_staging_types', 'manual__2025-10-25T12:05:59.793235+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/DataCo_pipeline_DAG.py', '--cfg-path', '/tmp/tmp0mmpe68f']
+[2025-10-25T12:06:58.685+0000] {standard_task_runner.py:91} INFO - Job 9: Subtask fix_staging_types
+[2025-10-25T12:06:58.781+0000] {task_command.py:426} INFO - Running <TaskInstance: dataco_supply_chain_pipeline.fix_staging_types manual__2025-10-25T12:05:59.793235+00:00 [running]> on host 2f7836fe1173
+[2025-10-25T12:06:58.932+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='bi@example.com' AIRFLOW_CTX_DAG_OWNER='DE-team' AIRFLOW_CTX_DAG_ID='dataco_supply_chain_pipeline' AIRFLOW_CTX_TASK_ID='fix_staging_types' AIRFLOW_CTX_EXECUTION_DATE='2025-10-25T12:05:59.793235+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-10-25T12:05:59.793235+00:00'
+[2025-10-25T12:06:58.933+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-10-25T12:07:00.631+0000] {logging_mixin.py:188} INFO - Error fixing data types: 'Connection' object has no attribute 'commit'
+[2025-10-25T12:07:00.631+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-10-25T12:07:00.632+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/usr/local/lib/python3.10/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/DataCo_pipeline_DAG.py", line 51, in fix_data_types_in_staging
+    conn.commit()
+AttributeError: 'Connection' object has no attribute 'commit'
+[2025-10-25T12:07:00.656+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=dataco_supply_chain_pipeline, task_id=fix_staging_types, run_id=manual__2025-10-25T12:05:59.793235+00:00, execution_date=20251025T120559, start_date=20251025T120658, end_date=20251025T120700
+[2025-10-25T12:07:00.686+0000] {logging_mixin.py:188} WARNING - /usr/local/lib/python3.10/site-packages/***/utils/email.py:154 RemovedInAirflow3Warning: Fetching SMTP credentials from configuration variables will be deprecated in a future release. Please set credentials using a connection instead.
+[2025-10-25T12:07:00.687+0000] {email.py:271} INFO - Email alerting: attempt 1
+[2025-10-25T12:07:04.521+0000] {email.py:282} INFO - Sent an alert email to ['bi@example.com']
+[2025-10-25T12:07:06.416+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 9 for task fix_staging_types ('Connection' object has no attribute 'commit'; 2190)
+[2025-10-25T12:07:06.451+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2025-10-25T12:07:06.481+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-10-25T12:07:06.486+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,24 @@
+supply_chain_core:
+  outputs:
+    dev:
+      dbname: dp_course
+      host: dp_postgres
+      pass: dppass
+      port: 5432
+      schema: core
+      threads: 1
+      type: postgres
+      user: dpuser
+  target: dev
+supply_chain_mart:
+  outputs:
+    dev:
+      dbname: dp_course
+      host: dp_postgres
+      pass: dppass
+      port: 5432
+      schema: mart
+      threads: 1
+      type: postgres
+      user: dpuser
+  target: dev
