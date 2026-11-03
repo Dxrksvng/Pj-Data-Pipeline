@@ -1,10 +1,35 @@
+<div align="center">
+
 # DataCo Supply Chain Analytics Pipeline
 
-[![Docker](https://img.shields.io/badge/Container-Docker-blue)](#quickstart)
-[![Airflow](https://img.shields.io/badge/Orchestrator-Apache%20Airflow-brightgreen)](#orchestration--validation)
-[![dbt](https://img.shields.io/badge/Transform-dbt-red)](#transform-models-dbt)
-[![Great%20Expectations](https://img.shields.io/badge/Data%20Quality-Great%20Expectations-purple)](#data-quality--great-expectations)
-[![Metabase](https://img.shields.io/badge/BI-Metabase-orange)](#bi--analytics)
+**End-to-end data pipeline: ingest, model (3NF to star schema), validate and visualise supply-chain data.**
+
+![Orchestration Airflow](https://img.shields.io/badge/Orchestration-Airflow-017CEE?style=for-the-badge&logo=apacheairflow&logoColor=white) ![Transform dbt](https://img.shields.io/badge/Transform-dbt-FF694B?style=for-the-badge&logo=dbt&logoColor=white) ![Quality Great Expectations](https://img.shields.io/badge/Quality-Great_Expectations-7C3AED?style=for-the-badge) ![BI Metabase](https://img.shields.io/badge/BI-Metabase-509EE3?style=for-the-badge&logo=metabase&logoColor=white)
+
+</div>
+
+## Tech stack
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=py,postgres,docker,airflow,sql&perline=10" alt="Tech stack" />
+</p>
+
+## Pipeline flow
+
+```mermaid
+flowchart LR
+    CSV[("DataCo CSV")] --> AB["Airbyte"]
+    AB --> ST[("Postgres\nstaging")]
+    ST --> DBT["dbt\nCore 3NF -> Star marts"]
+    DBT --> GE["Great Expectations\ndata quality"]
+    GE --> MB["Metabase\ndashboards"]
+    AF{{"Airflow DAG\nschedule + SLA"}} -.-> AB
+    AF -.-> DBT
+    AF -.-> GE
+```
+
+---
+
 
 > **Demo/Slide video:** [https://www.youtube.com/watch?v=dO6Y7ipzRO0](https://www.youtube.com/watch?v=dO6Y7ipzRO0)
 > **Dataset:** DataCo SMART SUPPLY CHAIN FOR BIG DATA ANALYSIS — [https://www.kaggle.com/datasets/shashwatwork/dataco-smart-supply-chain-for-big-data-analysis](https://www.kaggle.com/datasets/shashwatwork/dataco-smart-supply-chain-for-big-data-analysis)
