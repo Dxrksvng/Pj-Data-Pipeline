@@ -75,7 +75,7 @@ Pj-Data-Pipeline/
 ├── dockerfile.airflow                  Airflow 2.9.3 + dbt-core/postgres 1.9.1 + Great Expectations 0.18.8
 ├── dockerfile.gx                       Great Expectations 0.18.15 helper container
 ├── postgresql.conf
-├── airbyte/                            Airbyte docker-compose, flags, temporal config
+├── airbyte/                            Airbyte docker-compose, `.env.example`, flags, temporal config
 ├── airflow/
 │   ├── dags/DataCo_pipeline_DAG.py     DAG dataco_supply_chain_pipeline
 │   ├── dags/data/DataCoSupplyChainDataset.csv
@@ -483,7 +483,7 @@ docker compose exec gx bash -lc "cd /workspace && python gx_scripts/create_suppl
 
 | Issue | Detail |
 |---|---|
-| Dev credentials in git | Postgres user and password, dbt `profiles.yml`, the DAG's connection string, Airflow admin user/password (`admin`/`admin`), and a Mailtrap SMTP user and password are committed in compose, Dockerfile, DAG or profiles files. They are lab defaults, but the SMTP credential especially should be rotated and moved to `.env` / secret manager. |
+| Dev credentials in git | Postgres user and password, dbt `profiles.yml`, the DAG's connection string, Airflow admin user/password (`admin`/`admin`), are present as local lab defaults in compose, Dockerfile, DAG or profiles files. The previously committed Mailtrap credential remains in Git history and should be rotated; current SMTP settings read `MAILTRAP_SMTP_USER` and `MAILTRAP_SMTP_PASSWORD` from the environment. |
 | Services exposed | Postgres 5432, pgAdmin and Metabase ports are published on the host. Do not run on a public network as-is. |
 | Run logs committed | `airflow/logs/` and `__pycache__` are tracked; they may leak paths and should be ignored. |
 | Dataset license/PII | Dataset is a public Kaggle dataset containing customer-like fields; review its terms and treat any real customer data under PDPA. |
