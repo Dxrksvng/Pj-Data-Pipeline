@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+!**/.env.example
+service_account.json
+**/service_account.json
